@@ -16,13 +16,6 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    // ------------------------------------------------------------------
-    // TODO: Write a get request to the /api/heartFailures endpoint here!
-    // ------------------------------------------------------------------
-    // ------------------------------------------------------------------
-    // TODO: Feed the data you receive back into your data visualization.
-    // ------------------------------------------------------------------
-
     axios.get('/api/heartFailures')
       .then((res) => {
         console.log(res);
@@ -34,7 +27,6 @@ class App extends React.Component {
         console.log(`Axios GET error: ${err}`)
       })
   }
-
 
   handleButtonClick() {
     this.setState({
@@ -55,6 +47,7 @@ class App extends React.Component {
   }
 
   render() {
+    console.log(this.state);
     return (
       <div>
         <div className="nav">

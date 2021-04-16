@@ -9,7 +9,7 @@ const mapConfig = {
     borderWidth: .5,
     highlightBorderWidth: .5,
     highlightBorderColor: 'black',
-    highlightFillColor: '#FC8D59',
+    highlightFillColor: '#1C828D',
     popupTemplate: function(geography, data) {
       if (!data) {
         return;
