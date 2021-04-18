@@ -1,11 +1,11 @@
 const express = require('express');
 const axios = require('axios').default;
 const token = require('../config.js');
-
 const app = express();
-const PORT = 3020;
 
 app.use(express.static(__dirname + '/../client/dist'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
 app.get('/api/heartFailures', (req, res) => {
   axios({
@@ -42,6 +42,4 @@ app.get('/api/heartFailures', (req, res) => {
   })
 });
 
-app.listen(PORT, () => {
-  console.log(`listening on port ${PORT}`);
-});
+module.exports = app;
