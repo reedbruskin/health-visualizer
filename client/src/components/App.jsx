@@ -8,6 +8,10 @@ let App = (props) => {
   const [data, setData] = useState(props.dummyData);
   const [renderMap, setRenderMap] = useState(false);
 
+  let handleButtonClick = () => {
+    setRenderMap(true);
+  }
+
   let render = () => {
     if (!renderMap) {
       return null;
@@ -15,7 +19,7 @@ let App = (props) => {
 
     return (
       <MortalityMap stateMortalityScores={colorScaleData(data)}
-                    handleButtonClick={() => {setRenderMap(true)}}
+                    handleButtonClick={handleButtonClick}
       />
     );
   }
@@ -34,7 +38,7 @@ let App = (props) => {
   return (
     <div>
       <div className="nav">
-        <button onClick={() => {setRenderMap(true)}}>Render Map!</button>
+        <button onClick={handleButtonClick}>Render Map!</button>
       </div>
       <div className="map">
         {render()}

@@ -1,34 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import Datamap from 'datamaps';
 import mapConfig from '../map.config.js';
 
-class MortalityMap extends React.Component {
-  constructor(props) {
-    super(props);
-    this.myRef = React.createRef();
-    this.state = {
-      data: null,
-    };
-    this.mapConfig = mapConfig;
-    this.mapConfig.data = this.props.stateMortalityScores;
-  }
+let MortalityMap = (props) => {
+  const myRef = React.createRef();
+  mapConfig.data = props.stateMortalityScores;
 
-  componentDidMount() {
-    this.dataViz = new Datamap(
-      Object.assign({}, this.mapConfig, {
-        element: this.myRef.current,
+  useEffect(() => {
+    const dataViz = new Datamap(
+      Object.assign({}, mapConfig, {
+        element: myRef.current,
         responsive: true
       })
     );
-    this.dataViz.labels();
-  }
+    dataViz.labels();
+  })
 
-  render() {
-    return (
-      <div className="map" ref={this.myRef}></div>
-    );
-  }
+  return (
+    <div className="map" ref={myRef}></div>
+  );
 }
 
 export default MortalityMap;
