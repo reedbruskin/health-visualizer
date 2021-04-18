@@ -4,16 +4,25 @@ import axios from 'axios';
 import MortalityMap from './MortalityMap.jsx';
 import colorScaleData from '../helpers/colorScaleData.js';
 
-let App = (props) => {
-  const [data, setData] = useState(props.dummyData);
-  const [renderMap, setRenderMap] = useState(false);
+let App = () => {
+  const [isLoading, setIsLoading] = useState(true);
+  const [data, setData] = useState([]);
+  const [map, setMap] = useState(false);
 
   let handleButtonClick = () => {
-    setRenderMap(true);
+    setMap(true);
   }
 
-  let render = () => {
-    if (!renderMap) {
+  let renderButton = () => {
+    if (isLoading) {
+      return <button>Data Loading Please Wait...</button>;
+    }
+
+    return <button onClick={handleButtonClick}>Render Map!</button>;
+  }
+
+  let renderMap = () => {
+    if (!map) {
       return null;
     }
 
@@ -27,8 +36,9 @@ let App = (props) => {
   useEffect(() => {
     axios.get('/api/heartFailures')
       .then((res) => {
-        console.log(res.data);
+        console.log('API Data:', res.data);
         setData(res.data);
+        setIsLoading(false);
       })
       .catch((err) => {
         console.log(`Axios GET error: ${err}`)
@@ -38,10 +48,10 @@ let App = (props) => {
   return (
     <div>
       <div className="nav">
-        <button onClick={handleButtonClick}>Render Map!</button>
+        {renderButton()}
       </div>
       <div className="map">
-        {render()}
+        {renderMap()}
       </div>
     </div>
   );
