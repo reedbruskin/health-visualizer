@@ -1,7 +1,7 @@
 # Health Visualizer
 A single page web app that illustrates rates of heart failures in the US on a state-by-state basis. A map is rendered based on real, current, medical data from the Medicare API.
 
-![health-visualizer] (./images/health-visualizer.png)
+[./images/health-visualizer.png]
 
 #### API Integration
 - I established an account with [Data.Medicare.gov](https://data.medicare.gov/login) so that I can use the [*Hospital Compare* API](https://dev.socrata.com/foundry/data.medicare.gov/ukfj-tt6v) and generate an App Key.
